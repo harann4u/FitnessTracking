@@ -1,24 +1,14 @@
-import dotenv from 'dotenv'
 import express from 'express';
-import connectDB from './config/db';
-
-dotenv.config()
+import cors from 'cors';
+import authRoutes from './routes/auth.routes'
+import cookieParser from 'cookie-parser';
 
 const app = express()
 
-
-// Middleware to parse JSON
 app.use(express.json())
+app.use(cookieParser());
+app.use(cors({ origin : 'http://localhost:5173', credentials: true}))
 
-// connect to DB
-connectDB()
+app.use('/api/auth',authRoutes)
 
-const PORT = process.env.PORT || 5000
-
-app.get("/",(req,res)=>{
-    res.send("API is Running")
-})
-
-app.listen(PORT,()=>{
-    console.log(`server is running on ${PORT}`)
-});
+export default  app

@@ -1,13 +1,17 @@
 {
   "compilerOptions": {
     "target": "ES2020",                         // Modern JS features
-    "module": "commonjs",                       // Node.js compatible
+   "module": "CommonJS",                       // Node.js compatible
+     "moduleResolution": "node",
+     "resolveJsonModule": true,
+     "typeRoots": ["./node_modules/@types"],
     "rootDir": "src",                           // Where your TypeScript files are
     "outDir": "dist",                           // Where compiled JS goes
     "strict": true,                             // Enable all strict type-checking
     "esModuleInterop": true,                    // Import compatibility with CommonJS
     "forceConsistentCasingInFileNames": true,   // Case sensitivity check
-    "skipLibCheck": true                        // Faster build
+    "skipLibCheck": true,                        // Faster build
+     "allowSyntheticDefaultImports": true,
   },
   "include": ["src"],                           // Include all TS files inside src
   "exclude": ["src/node_modules"]                   // Exclude dependencies
