@@ -7,15 +7,15 @@ export const ProfileWrapperStyled = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;  // not space-between — that will push children apart vertically
-  background: yellow;
+  // background: yellow;
   width: 100%;
+  gap:1.5rem;
   overflow: hidden;  // let parent handle scroll
 `
 
 export const HeaderProfileStyled = styled.div`
     margin-top:20px;
-    height: 5%;
-    width: 40%;
+    width: 40%; 
     display:flex;
     justify-content:center;
     align-items:center;

@@ -2,7 +2,7 @@ import React from "react"
 import { HeaderProfileStyled, ProfileWrapperStyled, StepperBoxStyled, StepperLineStyled, StepperStyled } from "./profileSetting.styled"
 import { ProfileImage } from "../dashboard/sidePannel/profileCard/ProfileCard.styled"
 import profilePic from '../../../public/profileImage.jpg'
-import PersonalDetails from "./formCreation/personalDetails/personalDetails"
+import PersonalDetails from "./personalDetails/personalDetails"
 
 const ProfileSetting = () => {
     const arr = [1, 2, 3, 4]
