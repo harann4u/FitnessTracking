@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import  tabSelectionReducer  from "./slice/tabJsonSlice";
-
+import loginInfoReducer from "./slice/loginInfo/loginInfoSlice";
 
 export const store = configureStore({
     reducer:{
-        tab:tabSelectionReducer
+        tab:tabSelectionReducer,
+        loginInfo:loginInfoReducer
     }
 })
 

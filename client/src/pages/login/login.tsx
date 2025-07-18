@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { loginService, refershTokenService } from "../../services/authServices"
 import { useToast } from "../../components/toast/toastContext"
+import { useDispatch } from "react-redux"
+import { saveLogindetails } from "../../store/slice/loginInfo/loginInfoSlice"
 
 type FormValues = {
     email: string,
@@ -11,6 +13,7 @@ type FormValues = {
 }
 
 const Login = () => {
+    const dispatch = useDispatch()
     const { showToast } = useToast()
     const navigate = useNavigate()
     const [accesstoken, setAccessToken] = useState<string | null>(null)
@@ -21,8 +24,7 @@ const Login = () => {
         try {
             const res = await loginService(data)
             const token = res.accessToken
-            setAccessToken(token)
-            //   const refreshToken = await refershTokenService()
+            dispatch(saveLogindetails({accessToken:token,isLogin:true,authType:'user'}))
             showToast('Login Success Fully', 'success')
             navigate('/dashboard')
 
@@ -30,6 +32,7 @@ const Login = () => {
             showToast(err?.response?.data?.message, "error")
         }
     }
+    
     return (
         <PageWrapper>
             <FormBox>
