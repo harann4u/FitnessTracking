@@ -9,7 +9,7 @@ import MainLayout from '../pages/mainLayout'
 const AppRoutes = ()=> {
     return(
         <Routes>
-            <Route path = '/' element = {<Login/>}/>
+            <Route path = '/login' element = {<Login/>}/>
             <Route path = '/signup' element = {<Signup/>}/>
             <Route path = '/admin' element = {<MainLayout/>}/>
             <Route path = '/dashboard' element = {<DashboardLaout/>}/>

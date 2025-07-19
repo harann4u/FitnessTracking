@@ -18,7 +18,6 @@ const Login = () => {
     const dispatch = useDispatch()
     const { showToast } = useToast()
     const navigate = useNavigate()
-    const [accesstoken, setAccessToken] = useState<string | null>(null)
     const { register, handleSubmit, formState: { errors }, } = useForm<FormValues>()
 
 
@@ -36,21 +35,21 @@ const Login = () => {
         }
     }
 
-    const initalCheckOfLogin = ()=>{
-        const localStorageLoginInfo =localStorage.getItem('loginInfo')
-        console.log('localStorageLoginInfo',localStorageLoginInfo)
-        if(localStorageLoginInfo){
-            const loginInfo:LoginInfoType = JSON.parse(localStorageLoginInfo)
-            console.log('json',loginInfo)
-            if(loginInfo.isLogin){
-                  navigate('/admin')
-            }
-        }
-    }
+    // const initalCheckOfLogin = ()=>{
+    //     const localStorageLoginInfo =localStorage.getItem('loginInfo')
+    //     console.log('localStorageLoginInfo',localStorageLoginInfo)
+    //     if(localStorageLoginInfo){
+    //         const loginInfo:LoginInfoType = JSON.parse(localStorageLoginInfo)
+    //         console.log('json',loginInfo)
+    //         if(loginInfo.isLogin){
+    //               navigate('/admin')
+    //         }
+    //     }
+    // }
 
-    useEffect(()=>{
-        initalCheckOfLogin()
-    },[])
+    // useEffect(()=>{
+    //     initalCheckOfLogin()
+    // },[])
     
     return (
         <PageWrapper>
