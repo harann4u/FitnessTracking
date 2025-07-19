@@ -1,16 +1,18 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { PageWrapper, FormBox, Title, Input, ErrorText, Button, Container, InputWrapper, ParaTag } from "../../components/shared/AuthForm.styles"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { loginService, refershTokenService } from "../../services/authServices"
 import { useToast } from "../../components/toast/toastContext"
 import { useDispatch } from "react-redux"
-import { saveLogindetails } from "../../store/slice/loginInfo/loginInfoSlice"
+import { saveLogindetails, type LoginInfoType } from "../../store/slice/loginInfo/loginInfoSlice"
 
 type FormValues = {
     email: string,
     password: string
 }
+
+ 
 
 const Login = () => {
     const dispatch = useDispatch()
@@ -25,13 +27,30 @@ const Login = () => {
             const res = await loginService(data)
             const token = res.accessToken
             dispatch(saveLogindetails({accessToken:token,isLogin:true,authType:'user'}))
+            localStorage.setItem('loginInfo',JSON.stringify({accessToken:token,isLogin:true,authType:'user'}))
             showToast('Login Success Fully', 'success')
-            navigate('/dashboard')
+            navigate('/admin')
 
         } catch (err: any) {
             showToast(err?.response?.data?.message, "error")
         }
     }
+
+    const initalCheckOfLogin = ()=>{
+        const localStorageLoginInfo =localStorage.getItem('loginInfo')
+        console.log('localStorageLoginInfo',localStorageLoginInfo)
+        if(localStorageLoginInfo){
+            const loginInfo:LoginInfoType = JSON.parse(localStorageLoginInfo)
+            console.log('json',loginInfo)
+            if(loginInfo.isLogin){
+                  navigate('/admin')
+            }
+        }
+    }
+
+    useEffect(()=>{
+        initalCheckOfLogin()
+    },[])
     
     return (
         <PageWrapper>

@@ -7,7 +7,9 @@ import type { RootState } from "../../store/store";
 
 const DashboardLaout = () => {
     const loginData = useSelector((state:RootState)=> state.loginInfo)
-    console.log("loginData+++",loginData)
+    const userData = useSelector((state:RootState)=> state.userDetails)
+    console.log("loginData+++",loginData.loginInfo)
+    console.log("userData++",userData.user)
     return (
          <>
             <ContentMainBoxStyled>

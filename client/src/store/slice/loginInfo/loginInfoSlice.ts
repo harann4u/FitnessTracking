@@ -28,10 +28,10 @@ const loginInfoSlice = createSlice({
         },
         resetLoginDetails: (state) => {
             state.loginInfo = {
-                accessToken: '',
-                isLogin: false,
-                authType: '',
-            }
+        accessToken: '',
+        isLogin: false,
+        authType: '',
+    }
         }
     }
 })
