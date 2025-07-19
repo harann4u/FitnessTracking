@@ -3,6 +3,7 @@ import AppRoutes from './routes/appRoutes'
 import ToastProvider from './components/toast/toastProvider'
 import { Provider } from 'react-redux'
 import { store } from './store/store'
+import AppInitializer from './appInitializer'
 
 function App() {
 
@@ -10,7 +11,9 @@ function App() {
     <>
       <Provider store={store}>
         <ToastProvider>
-          <AppRoutes />
+          <AppInitializer>
+            <AppRoutes />
+          </AppInitializer>
         </ToastProvider>
       </Provider>
     </>
