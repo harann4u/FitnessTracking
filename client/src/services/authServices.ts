@@ -1,3 +1,4 @@
+import axiosInstance from "../api/axios"
 import axios from "../api/axios"
 
 type FormValues = {
@@ -12,17 +13,17 @@ type LoginFormValue = {
 }
 
 export const signupService = async(formData:FormValues)=> { 
-        const response = await axios.post('/api/auth/signup',formData)
+        const response = await axiosInstance.post('/api/auth/signup',formData)
         return response.data
 }
 
 export const loginService = async (formData:LoginFormValue) => {
-    const response = await axios.post('/api/auth/login',formData)
+    const response = await axiosInstance.post('/api/auth/login',formData)
     return response.data
 }
 
 export const refershTokenService = async () => {
-    const response = await axios.get('api/auth/refresh-token',{
+    const response = await axiosInstance.get('api/auth/refresh-token',{
         withCredentials : true
     })
     return response
