@@ -1,10 +1,11 @@
 import { Input } from "../../../../components/shared/AuthForm.styles"
+import type { UserDetailsType } from "../../../../store/slice/userDetails/userDetailsSlice"
 import type { FormData } from "../FormData"
 import { FitenssInfoStyled } from "./fitnessProfile.styled"
 
 type FitnessInfoProps = {
     data: FormData,
-    updateFields: (fileds: Partial<FormData>) => void
+    updateFields: (fileds: Partial<UserDetailsType>) => void
 }
 
 const FitnessProfile = ({ data, updateFields }:FitnessInfoProps) => {
