@@ -1,11 +1,12 @@
 import type { FormData } from "../FormData"
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import { PerferenceWrapperStyled } from "./perference.styled";
+import type { UserDetailsType } from "../../../../store/slice/userDetails/userDetailsSlice";
 
 
 type PerferenceProps = {
     data: FormData,
-    updateFields: (fileds: Partial<FormData>) => void
+    updateFields: (fileds: Partial<UserDetailsType>) => void
 
 }
 

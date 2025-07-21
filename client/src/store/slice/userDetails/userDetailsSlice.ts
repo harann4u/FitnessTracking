@@ -1,7 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {postUserDetails} from './userServices'
+import { FastForward } from "@mui/icons-material";
 
 
-interface UserDetailsType {
+export interface UserDetailsType {
     fullName: string,
     email: string,
     password: string,
@@ -19,7 +21,9 @@ interface UserDetailsType {
 }
 
 interface InitialState {
-    user: UserDetailsType | null
+    user: UserDetailsType | null,
+    loading:boolean,
+    error:string|null
 }
 
 const initialState: InitialState = {
@@ -38,36 +42,29 @@ const initialState: InitialState = {
         perferredWorkoutTime: "",
         perferredworkoutType: "",
         primaryFitnessGoal: ''
-    }
+    },
+     loading:false,
+    error:''
 }
 
 const userDetailsSlice = createSlice({
     name: 'userDetails',
     initialState,
-    reducers: {
-        setUserDetails: (state, action) => {
-            state.user = action.payload
-        },
-        clearUser: (state) => {
-            state.user = {
-                fullName: "",
-                email: "",
-                password: "",
-                phoneNumber: '',
-                gender: "",
-                experienceLevel: "",
-                age: 0,
-                height: 0,
-                currentWeight: 0,
-                goalWeight: 0,
-                activitylevel: "",
-                perferredWorkoutTime: "",
-                perferredworkoutType: "",
-                primaryFitnessGoal: ''
-            }
-        }
+    reducers: {},
+    extraReducers :(builder) => {
+        builder
+            .addCase(postUserDetails.pending,(state)=>{
+                state.loading = true,
+                state.error = null
+            })
+            .addCase(postUserDetails.fulfilled,(state, action)=>{
+                state.loading = false,
+                state.user = action.payload 
+            })
     }
 })
 
-export const { setUserDetails, clearUser } = userDetailsSlice.actions
+
+
+
 export default userDetailsSlice.reducer

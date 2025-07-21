@@ -5,11 +5,12 @@ import { useMultiStepForm } from "../useMultiStepForm"
 import PersonalInfo from "./personalInfo/personalInfo"
 import FitnessProfile from "./fitnessProfile/fitnessProfile"
 import Preference from "./perference/preference"
-import { userDetailsPostService } from "../../../store/slice/userDetails/userServices"
 import { useToast } from "../../../components/toast/toastContext"
 import { useDispatch } from "react-redux"
-import { setUserDetails } from "../../../store/slice/userDetails/userDetailsSlice"
+import {  type UserDetailsType } from "../../../store/slice/userDetails/userDetailsSlice"
 import { useNavigate } from "react-router-dom"
+import type { AppDispatch } from "../../../store/store"
+import { postUserDetails } from "../../../store/slice/userDetails/userServices"
 
 type FormWrapperTypes = {
     title: string,
@@ -17,17 +18,17 @@ type FormWrapperTypes = {
     children?: React.ReactNode
 }
 
-const INITIAL_DATA: FormData = {
+const INITIAL_DATA: UserDetailsType = {
     fullName: "",
     email: "",
     password: "",
     phoneNumber: '',
     gender: "",
     experienceLevel: "",
-    age: null,
-    height: null,
-    currentWeight: null,
-    goalWeight: null,
+    age: 0,
+    height: 0,
+    currentWeight: 0,
+    goalWeight: 0,
     activitylevel: "",
     perferredWorkoutTime: "",
     perferredworkoutType: "",
@@ -35,11 +36,11 @@ const INITIAL_DATA: FormData = {
 }
 
 const FormWrapper = ({ title }: FormWrapperTypes) => {
-    const [data, setData] = useState<FormData>(INITIAL_DATA)
+    const [data, setData] = useState<UserDetailsType>(INITIAL_DATA)
     const { showToast } = useToast()
-    const dispatch = useDispatch()
+    const dispatch = useDispatch<AppDispatch>()
     const navigate = useNavigate()
-    function updateFields(fileds: Partial<FormData>) {
+    function updateFields(fileds: Partial<UserDetailsType>) {
         setData((prev) => ({ ...prev, ...fileds }))
     }
 
@@ -58,15 +59,13 @@ const FormWrapper = ({ title }: FormWrapperTypes) => {
     ])
 
     const onSubmit = async(e: React.FormEvent) => {
-
         e.preventDefault();
         if (!isLastStep) {
             return next();
         } else {
             try {
-                const response =await  userDetailsPostService(data)
-                console.log('response++',response)
-                dispatch(setUserDetails({user:response}))
+                const result = await dispatch(postUserDetails(data))
+                console.log('result',result)
                 navigate('/dashboard')
             } catch (err: any) {
                 showToast(err?.response?.data?.message, "error")
