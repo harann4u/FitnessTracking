@@ -6,7 +6,7 @@ import { saveUserDetails } from '../controller/user/user.controller';
 const router = Router();
 
 // auth Porcess
-router.post('/signup',signup);
+router.post('/signup',signup as any);
 router.post('/login',login)
 router.get('/refresh-token',refreshToken)
 
