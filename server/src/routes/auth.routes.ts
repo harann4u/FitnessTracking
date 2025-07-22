@@ -7,8 +7,8 @@ const router = Router();
 
 // auth Porcess
 router.post('/signup',signup as any);
-router.post('/login',login)
-router.get('/refresh-token',refreshToken)
+router.post('/login',login as any)
+router.get('/refresh-token',refreshToken as any)
 
 // User
 router.post('/user-details',saveUserDetails)

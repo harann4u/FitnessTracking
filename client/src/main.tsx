@@ -1,4 +1,6 @@
-import { StrictMode } from 'react'
+(window as any).appStartTime = performance.now();
+
+import { StrictMode, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'

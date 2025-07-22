@@ -34,22 +34,6 @@ const Login = () => {
             showToast(err?.response?.data?.message, "error")
         }
     }
-
-    // const initalCheckOfLogin = ()=>{
-    //     const localStorageLoginInfo =localStorage.getItem('loginInfo')
-    //     console.log('localStorageLoginInfo',localStorageLoginInfo)
-    //     if(localStorageLoginInfo){
-    //         const loginInfo:LoginInfoType = JSON.parse(localStorageLoginInfo)
-    //         console.log('json',loginInfo)
-    //         if(loginInfo.isLogin){
-    //               navigate('/admin')
-    //         }
-    //     }
-    // }
-
-    // useEffect(()=>{
-    //     initalCheckOfLogin()
-    // },[])
     
     return (
         <PageWrapper>
