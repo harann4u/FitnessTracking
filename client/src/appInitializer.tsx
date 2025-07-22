@@ -23,6 +23,8 @@ const AppInitializer = ({children}:{children:React.ReactNode}) => {
 
     useEffect(() => {
         initalCheckOfLogin()
+        const fullyInteractive = performance.now();
+        console.log(`APP fully interactive after : ${fullyInteractive.toFixed(2)} ms`)
     }, [])
 
     
