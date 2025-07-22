@@ -6,6 +6,7 @@ import { loginService, refershTokenService } from "../../services/authServices"
 import { useToast } from "../../components/toast/toastContext"
 import { useDispatch } from "react-redux"
 import { saveLogindetails, type LoginInfoType } from "../../store/slice/loginInfo/loginInfoSlice"
+import { USER_ROLES } from "../../constants/authType.enums"
 
 type FormValues = {
     email: string,
@@ -25,8 +26,8 @@ const Login = () => {
         try {
             const res = await loginService(data)
             const token = res.accessToken
-            dispatch(saveLogindetails({accessToken:token,isLogin:true,authType:'user'}))
-            localStorage.setItem('loginInfo',JSON.stringify({accessToken:token,isLogin:true,authType:'user'}))
+            dispatch(saveLogindetails({accessToken:token,isLogin:true,authType:USER_ROLES.USER}))
+            localStorage.setItem('loginInfo',JSON.stringify({accessToken:token,isLogin:true,authType:USER_ROLES.USER}))
             showToast('Login Success Fully', 'success')
             navigate('/admin')
 
