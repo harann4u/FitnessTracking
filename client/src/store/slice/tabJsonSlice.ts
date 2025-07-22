@@ -31,6 +31,11 @@ const initialState:tabJsonState[] = [
         name:'Blogging',
         id:4,
         isIn:false
+    },
+     {
+        name:'User Details',
+        id:5,
+        isIn:false
     }
 ]
 
