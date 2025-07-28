@@ -1,5 +1,5 @@
 import { ProfileButton, ProfileCardWrapper, ProfileImage, ProfileName } from "./ProfileCard.styled"
-import profilePic from '../../../../../public/profileImage.jpg'
+import profilePic from '../../../../assets'
 import { useDispatch } from "react-redux"
 import type { AppDispatch } from "../../../../store/store"
 import { tabSelectionChange } from "../../../../store/slice/tabJsonSlice"
